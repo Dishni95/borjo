@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Scope_One, Shippori_Mincho } from "next/font/google"
 import "./globals.css";
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import { CartProvider } from "@/context/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,10 +40,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${scopeOne.variable} ${shipporiMinchoRegular.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${scopeOne.variable} ${shipporiMinchoRegular.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Navbar />
-        {children}
+        <CartProvider>
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+        </CartProvider>
         <Footer />
       </body>
     </html>

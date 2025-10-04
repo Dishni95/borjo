@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import { useCart } from "@/context/CartContext";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseOutline } from "react-icons/io5";
 import { PiHeartStraightLight } from "react-icons/pi";
@@ -9,12 +10,17 @@ import Link from "next/link";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const {items} = useCart()
+
+    const cartItemCount = items.reduce((total, item) => total + item.quantity, 0)
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     }
+    
     return (
-        <nav className="sticky h-14 top-0 z-50 bg-white">
-            <div className="flex h-14 lg:mt-4 justify-between items-center p-4">
+        <nav className="sticky h-20 top-0 z-50 bg-white">
+            <div className="flex h-14 lg:mt-4 justify-between items-center p-4 max-w-screen-xl mx-auto">
                 {/* Left section - Mobile menu + Desktop navigation */}
                 <div className="flex h-14 items-center gap-4">
                     <div className="lg:hidden pr-2 pt-1">
@@ -27,7 +33,7 @@ const Navbar = () => {
                 
                 {/* Center section - Logo */}
                 <div className="absolute left-1/2 transform -translate-x-1/2">
-                    <Link href="/mens" className="flex z-40 px-3 py-2">
+                    <Link href="/" className="flex z-40 px-3 py-2">
                         <img src="/logo/Borjo.png" alt="Logo" className="h-12 w-48 mt-4 lg:w-40 object-contain" />
                     </Link>
                 </div>
@@ -42,6 +48,11 @@ const Navbar = () => {
                     <Link href="/cart">
                         <div className="relative p-2 lg:p-2 mt-1 hover:bg-zinc-100 rounded-3xl transition-all">
                             <PiHandbagSimpleThin size={25}/>
+                            {cartItemCount > 0 && (
+                                    <span className="absolute top-5 right-5 bg-zinc-200 text-black rounded-full text-xs w-5 h-5 text-center">
+                                        {cartItemCount}
+                                    </span>
+                                )}
                         </div>
                     </Link>
                 </div>

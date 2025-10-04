@@ -15,7 +15,7 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  /* background: var(--background);
+  color: var(--foreground); */
   font-family:  var(--font-shippori-mincho-regular), serif;
 }
