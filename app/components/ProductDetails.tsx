@@ -12,11 +12,10 @@ export default function ProductDetails({ product }: { product: Product }) {
     const {addItem, removeItem} = useCart()
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 space-x-4 mt-10">
-            
-            <div className="flex gap-2 lg:ml-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 space-x-4 max-w-screen-xl mx-auto mt-20">
+            <div className="flex gap-2 ">
                 {/* Thumbnail column */}
-                <div className="flex flex-col gap-2 w-24 lg:ml-10 ">
+                <div className="flex flex-col gap-2 w-24  ">
                     {product.product_images.map((image, index) => (
                         <img
                             key={index}
@@ -48,7 +47,9 @@ export default function ProductDetails({ product }: { product: Product }) {
                 <p className="text-black mt-4">{product.details}</p>
                 <p className="text-black text-xl mt-10">{product.product_item[0].price}</p>
                 <div className="flex items-center gap-2 mt-10">
-                    <button onClick={() => addItem({id: product.id, name: product.name, price: product.product_item[0].price.toString(), quantity: 1, image: product.product_images[0].public_url})} className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50">Add to cart</button>
+                    <button onClick={() => 
+                        addItem({id: product.id, name: product.name, price: product.product_item[0].price.toString(), quantity: 1, image: product.product_images[0].public_url})} 
+                        className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50">Add to cart</button>
                     <button className="bg-zinc-100 rounded-full transition-all px-2 py-2 hover:bg-zinc-50">
                         <PiHeartStraightLight size={25} />
                     </button>

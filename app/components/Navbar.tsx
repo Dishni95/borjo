@@ -49,7 +49,7 @@ const Navbar = () => {
                         <div className="relative p-2 lg:p-2 mt-1 hover:bg-zinc-100 rounded-3xl transition-all">
                             <PiHandbagSimpleThin size={25}/>
                             {cartItemCount > 0 && (
-                                    <span className="absolute top-5 right-5 bg-zinc-200 text-black rounded-full text-xs w-5 h-5 text-center">
+                                    <span className="absolute top-5 right-5 bg-zinc-100  text-black rounded-full text-xs w-5 h-5 text-center">
                                         {cartItemCount}
                                     </span>
                                 )}
