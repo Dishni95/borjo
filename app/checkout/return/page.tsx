@@ -9,7 +9,7 @@ import Link from 'next/link';
 function ReturnContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { items } = useCart();
+  const { clearCart } = useCart();
   const [status, setStatus] = useState<string | null>(null);
   const [customerEmail, setCustomerEmail] = useState('');
 
@@ -29,11 +29,11 @@ function ReturnContent() {
         
         // Clear cart on successful payment
         if (data.payment_status === 'paid') {
-          localStorage.removeItem('cart');
+          clearCart();
         }
       })
       .catch((error) => console.error('Error:', error));
-  }, [searchParams, router]);
+  }, [searchParams, router, clearCart]);
 
   if (status === 'paid') {
     return (

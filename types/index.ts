@@ -45,6 +45,7 @@ export interface CartContextType {
   items: CartItem[];
   addItem: (id: CartItem) => void;
   removeItem: (id: CartItem) => void;
+  clearCart: () => void;
 }
 
 
