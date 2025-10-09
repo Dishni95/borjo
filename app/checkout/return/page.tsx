@@ -9,7 +9,7 @@ import Link from 'next/link';
 function ReturnContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { clearCart } = useCart();
+  const { items, clearCart } = useCart();
   const [status, setStatus] = useState<string | null>(null);
   const [customerEmail, setCustomerEmail] = useState('');
 
