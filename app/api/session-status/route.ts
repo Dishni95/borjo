@@ -14,7 +14,11 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    const session = await stripe.checkout.sessions.retrieve(sessionId,
+      {
+        expand: ['customer_details'],
+      }
+    );
 
     // Update order status in Supabase
     const supabase = await createClient();
@@ -25,6 +29,7 @@ export async function GET(request: NextRequest) {
         stripe_payment_intent_id: session.payment_intent as string,
         customer_email: session.customer_details?.email,
         customer_name: session.customer_details?.name,
+        shipping_address: session.customer_details?.address,
         // shipping_address: session.shipping_details?.address,
         updated_at: new Date().toISOString(),
       })
