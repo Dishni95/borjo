@@ -54,8 +54,12 @@ export function CartProvider({children}: CartProviderProps) {
         })
     }
     
+    function clearCart() {
+        setCartItem([])
+    }
+    
     return (
-        <CartContext.Provider value={{items: cartItem, addItem, removeItem}}>
+        <CartContext.Provider value={{items: cartItem, addItem, removeItem, clearCart}}>
             {children}
         </CartContext.Provider>
     )
