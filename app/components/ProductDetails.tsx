@@ -1,19 +1,43 @@
 "use client"
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Product } from "@/types"
 import { useCart } from "@/context/CartContext";
 import { PiHeartStraightLight } from "react-icons/pi";
+import { MdOutlineCheck } from "react-icons/md";
 
 
 
 export default function ProductDetails({ product }: { product: Product }) {
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-    const {addItem, removeItem} = useCart()
+    const [showSuccess, setShowSuccess] = useState(false);
+    const {addItem, items} = useCart();
+    const router = useRouter();
+
+    const isInCart = items.some(item => item.id === product.id);
+
+    const handleAddToCart = async () => {
+        if (isInCart) {
+            router.push('/cart');
+            return;
+        }
+        
+        addItem({
+            id: product.id, 
+            name: product.name, 
+            price: product.product_item[0].price.toString(), 
+            quantity: 1, 
+            image: product.product_images[0].public_url
+        });
+
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 1000);
+    }
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 space-x-4 max-w-screen-xl mx-auto mt-20">
-            <div className="flex gap-2 ">
+            <div className="flex gap-2 justify-center">
                 {/* Thumbnail column */}
                 <div className="flex flex-col gap-2 w-24  ">
                     {product.product_images.map((image, index) => (
@@ -45,11 +69,26 @@ export default function ProductDetails({ product }: { product: Product }) {
             <div className="lg:pr-20 lg:pl-10">
                 <h1 className="text-2xl font-medium">{product.name}</h1>
                 <p className="text-black mt-4">{product.details}</p>
-                <p className="text-black text-xl mt-10">{product.product_item[0].price}</p>
+                <p className="text-black text-xl mt-10">{product.product_item[0].price} €</p>
                 <div className="flex items-center gap-2 mt-10">
-                    <button onClick={() => 
-                        addItem({id: product.id, name: product.name, price: product.product_item[0].price.toString(), quantity: 1, image: product.product_images[0].public_url})} 
-                        className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50">Add to cart</button>
+                    <button 
+                        onClick={handleAddToCart}
+                        className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50 
+                        transition-all disabled:opacity-70 min-w-[140px] flex items-center justify-center gap-2"
+                    >
+                       { showSuccess ? (
+                            <>
+                                <MdOutlineCheck className="" />
+                                <span>Added</span>
+                            </>
+                        ) : isInCart ? (
+                            <>
+                                <span>Go to Bag</span>
+                            </>
+                        ) : (
+                            'Add to Bag'
+                        )}
+                    </button>
                     <button className="bg-zinc-100 rounded-full transition-all px-2 py-2 hover:bg-zinc-50">
                         <PiHeartStraightLight size={25} />
                     </button>

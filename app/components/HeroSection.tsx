@@ -40,7 +40,7 @@ const HeroSection = async () => {
                     <Menu />
                     <div className="mt-6 lg:w-1/2">
                         <p className="text-gray-700 leading-relaxed transition-opacity duration-300 ease-in-out">
-                            Discover our collection of handmade wallets — crafted with care, precision and style. Each wallet is unique, durable, and designed to keep your essentials organized while showcasing true craftsmanship.
+                            Discover our collection of handmade leather goods — crafted with care, precision and style.
                         </p>
                     </div>
                     <div className="mt-20">
