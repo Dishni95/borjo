@@ -83,7 +83,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                 <h1 className="text-2xl font-medium">{product.name}</h1>
                 <p className="text-black mt-4">{product.details}</p>
                 <p className="text-black text-xl mt-8">{product.product_item[0].price} €</p>
-                <div className="flex items-center gap-2 mt-20">
+                <div className="flex items-center gap-2 mt-10 lg:mt-20">
                     <button 
                         onClick={handleAddToCart}
                         className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50 w-full lg:w-auto

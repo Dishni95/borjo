@@ -35,7 +35,7 @@ const HeroSection = async () => {
     console.log(products)
     return (
         <section>
-            <div className="mb-20 mt-10 max-w-screen-xl mx-auto">
+            <div className="mb-20 mt-10 max-w-screen-xl mx-2 lg:mx-auto">
                 <div>
                     <Menu />
                     <div className="mt-6 lg:w-1/2">

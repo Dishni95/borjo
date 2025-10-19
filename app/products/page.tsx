@@ -15,7 +15,6 @@ async function getCategoryProducts(category: string | null) {
     
     // Get storage URL once
     const { data: { publicUrl: baseUrl } } = supabase.storage.from(BUCKET_NAME).getPublicUrl('')
-    console.log(data)
     
     // Transform data synchronously
     return data.map(product => ({
@@ -31,14 +30,13 @@ async function getCategoryProducts(category: string | null) {
 export default async function CategoryPage({searchParams}: {searchParams: {category: number}}) {
     const resolved = await searchParams
     const category = typeof resolved.category === 'string' ? resolved.category : null
-    console.log(category)
     const products = await getCategoryProducts(category)
-    console.log(products)
+
     return (
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-screen-xl mx-2 lg:mx-auto">
             <Menu />
-            <div className="mt-28">
-            <ProductGrid products={products} />
+            <div className="mt-20">
+                <ProductGrid products={products} />
             </div>
         </div>
     )

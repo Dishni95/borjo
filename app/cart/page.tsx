@@ -10,8 +10,13 @@ export default function CartPage() {
             {/* Cart items section*/}
             <div className="col-span-1">
                 {items.length === 0 ? (
-                    <div>
-                        <h1>Cart is empty</h1>
+                    <div className="flex flex-col items-center">
+                        <h1 className="text-2xl font-medium">Cart is empty</h1>
+                        <Link className="mt-4" href="/">
+                            <button className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50">
+                                Continue Shopping
+                            </button>
+                        </Link>
                     </div>
                 ):(
                     <div className="flex flex-col gap-4 md:ml-20">
@@ -40,6 +45,7 @@ export default function CartPage() {
              </div>
 
              {/* Checkout section*/}
+             {items.length > 0 && (
              <div className="col-span-1 md:w-1/2 md:ml-20">
                 <div className="flex mb-2 justify-between">
                     <span>Subtotal </span>
@@ -61,7 +67,7 @@ export default function CartPage() {
                     </Link>
                 </div>
              </div>
-
+            )}
         </div>
     )
 }
