@@ -26,7 +26,9 @@ export default function CartPage() {
                                 <div className="basis-2/3">
                                     <div className="flex flex-col gap-4">
                                         <div key={item.id}>
-                                            <p>{item.name}</p>
+                                            <Link href={`/products/${item.id}`}>
+                                                <p className="hover:underline cursor-pointer">{item.name}</p>
+                                            </Link>
                                         </div>
                                         <p>{item.price}</p>
                                         <p>Qty: {item.quantity}</p>
