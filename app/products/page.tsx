@@ -1,6 +1,6 @@
-import Menu from "../components/Menu";
 import { createClient } from "@/utils/supabase/server";
 import ProductGrid from "../components/ProductGrid";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const BUCKET_NAME = 'borjo_bucket'
 
@@ -32,9 +32,15 @@ export default async function CategoryPage({searchParams}: {searchParams: {categ
     const category = typeof resolved.category === 'string' ? resolved.category : null
     const products = await getCategoryProducts(category)
 
+    const crumbs = [
+        { text: "Products", link: '/products' },
+    ]
+
     return (
         <div className="max-w-screen-xl mx-2 lg:mx-auto">
-            <Menu />
+            <div className="mt-10">
+                <Breadcrumbs crumbs={crumbs} />
+            </div>
             <div className="mt-20">
                 <ProductGrid products={products} />
             </div>

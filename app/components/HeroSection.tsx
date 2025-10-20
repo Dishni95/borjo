@@ -1,7 +1,6 @@
 import ProductCard from "./ProductCard";
 import { createClient } from '@/utils/supabase/client'
 import { Product, Category } from "@/types";
-import Menu from "./Menu";
 
 const BUCKET_NAME = 'borjo_bucket'
 
@@ -35,9 +34,8 @@ const HeroSection = async () => {
     console.log(products)
     return (
         <section>
-            <div className="mb-20 mt-10 max-w-screen-xl mx-2 lg:mx-auto">
+            <div className="mb-20 mt-4 max-w-screen-xl mx-2 lg:mx-auto">
                 <div>
-                    <Menu />
                     <div className="mt-6 lg:w-1/2">
                         <p className="text-gray-700 leading-relaxed transition-opacity duration-300 ease-in-out">
                             Discover our collection of handmade leather goods — crafted with care, precision and style.
