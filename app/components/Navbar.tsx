@@ -27,7 +27,6 @@ const Navbar = () => {
         } else {
             document.body.style.overflow = 'unset';
         }
-        
         // Cleanup on unmount
         return () => {
             document.body.style.overflow = 'unset';
