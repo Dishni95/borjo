@@ -36,7 +36,7 @@ const Navbar = () => {
     return (
         <>
             <nav className="sticky h-30 top-0 z-50 bg-white">
-                <div className="flex h-14 lg:mt-4 justify-between items-center p-4 max-w-screen-xl mx-auto">
+                <div className="flex h-20 lg:mt-4 justify-between items-center p-4 max-w-screen-xl mx-auto">
                     {/* Left section - Mobile menu + Desktop navigation */}
                     <div className="flex h-14 items-center gap-4">
                         <div className="lg:hidden pr-2 pt-1">

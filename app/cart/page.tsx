@@ -5,45 +5,48 @@ import { useCart } from "@/context/CartContext";
 
 export default function CartPage() {
     const {items, removeItem} = useCart()
+    
+    if (items.length === 0) {
+        return (
+            <div className="flex flex-col items-center mt-20">
+                <h1 className="text-2xl font-medium">Bag is empty</h1>
+                <Link className="mt-4" href="/">
+                    <button className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50">
+                        Continue Shopping
+                    </button>
+                </Link>
+            </div>
+        )
+    }
+    
     return (
         <div className="lg:grid lg:grid-cols-2 gap-4 max-w-screen-xl mx-auto mt-10 lg:mt-20">
             {/* Cart items section*/}
             <div className="col-span-1">
-                {items.length === 0 ? (
-                    <div className="flex flex-col items-center">
-                        <h1 className="text-2xl font-medium">Cart is empty</h1>
-                        <Link className="mt-4" href="/">
-                            <button className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50">
-                                Continue Shopping
-                            </button>
-                        </Link>
-                    </div>
-                ):(
-                    <div className="flex flex-col gap-4 md:ml-20">
-                        {[...items].reverse().map((item) => (
-                            <div className="flex flex-row gap-4 p-2 border-t">
-                                <img src={item.image || ''} alt={item.name} className="w-20 h-auto" />
-                                <div className="basis-2/3">
-                                    <div className="flex flex-col gap-4">
-                                        <div key={item.id}>
-                                            <Link href={`/products/${item.id}`}>
-                                                <p className="hover:underline cursor-pointer">{item.name}</p>
-                                            </Link>
-                                        </div>
-                                        <p>{item.price}</p>
-                                        <p>Qty: {item.quantity}</p>
+                <div className="flex flex-col gap-4 md:ml-20">
+                    {[...items].reverse().map((item) => (
+                        <div className="flex flex-row gap-4 p-2 border-t">
+                            <img src={item.image || ''} alt={item.name} className="w-20 h-auto" />
+                            <div className="basis-2/3">
+                                <div className="flex flex-col gap-4">
+                                    <div key={item.id}>
+                                        <Link href={`/products/${item.id}`}>
+                                            <p className="hover:underline cursor-pointer">{item.name}</p>
+                                        </Link>
                                     </div>
-                                </div>
-                                <div className="basis-1/3 flex justify-end">
-                                    <p className="hover:underline cursor-pointer my-auto"
-                                            onClick={() => removeItem(item)}>Remove
-                                    </p>
+                                    <p>{item.price}</p>
+                                    <p>Qty: {item.quantity}</p>
                                 </div>
                             </div>
-                        ))}
-                        
-                    </div>  
-                )}
+                            <div className="basis-1/3 flex justify-end">
+                                <p className="hover:underline cursor-pointer my-auto"
+                                        onClick={() => removeItem(item)}>Remove
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                    
+                </div>  
              </div>
 
              {/* Checkout section*/}

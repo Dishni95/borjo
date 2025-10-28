@@ -14,7 +14,7 @@ const Breadcrumbs: FC<Props> = ({ crumbs }) => {
         <nav className='mb-4 md:mb-6 lg:mb-8'>
             <ul className={`flex flex-wrap items-center gap-1.5 text-foreground-600`}>
                 <li className={`flex items-center gap-1.5`}>
-                    <Link href={`/`} className='text-sm sm:text-base'>
+                    <Link href={`/`} className='text-sm lg:text-xs'>
                         Home
                     </Link>
                     <MdChevronRight />
@@ -28,13 +28,13 @@ const Breadcrumbs: FC<Props> = ({ crumbs }) => {
                                 {
                                     (i < crumbs.length - 1) ? (
                                         <li className={`flex items-center gap-1.5`}>
-                                            <Link href={link || '#'} className='text-sm sm:text-base'>
+                                            <Link href={link || '#'} className='text-sm lg:text-xs'>
                                                 {text}
                                             </Link>
                                             <MdChevronRight />
                                         </li>
                                     ) : (
-                                        <li className='text-sm sm:text-base'>
+                                        <li className='text-sm lg:text-xs'>
                                             {text}
                                         </li>
                                     )

@@ -32,7 +32,19 @@ export default async function CategoryPage({searchParams}: {searchParams: {categ
     const category = typeof resolved.category === 'string' ? resolved.category : null
     const products = await getCategoryProducts(category)
 
-    const crumbs = [
+    // Fetch category name
+    const supabase = await createClient()
+    const { data: categoryData } = category 
+        ? await supabase
+            .from('product_categories')
+            .select('category_name')
+            .eq('id', category)
+            .single()
+        : { data: null }
+
+    const crumbs = categoryData ? [
+        { text: categoryData.category_name, link: `/products?category=${category}` },
+    ] : [
         { text: "Products", link: '/products' },
     ]
 

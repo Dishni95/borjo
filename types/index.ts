@@ -15,6 +15,7 @@ export interface Product {
   madein: string;
   product_images: ProductImage[];
   product_item: ProductItem[];
+  product_categories: Category[];
 }
 
 interface ProductImage {

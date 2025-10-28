@@ -36,7 +36,7 @@ export default function ProductDetails({ product }: { product: Product }) {
     }
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 max-w-screen-xl mx-auto lg:mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 max-w-screen-xl mx-auto lg:mt-10">
             {/* Mobile: snap slider */}
             <div className="flex overflow-x-auto snap-x snap-mandatory gap-2 lg:hidden">
                 {product.product_images.map((image, index) => (
