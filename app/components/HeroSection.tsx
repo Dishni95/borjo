@@ -35,13 +35,13 @@ const HeroSection = async () => {
     return (
         <section>
             <div className="mb-20 mt-4 max-w-screen-xl mx-2 lg:mx-auto">
-                <div>
+                <div className="mt-10">
                     <div className="mt-6 lg:w-1/2">
                         <p className="text-gray-700 leading-relaxed transition-opacity duration-300 ease-in-out">
                             Discover our collection of handmade leather goods — crafted with care, precision and style.
                         </p>
                     </div>
-                    <div className="mt-20">
+                    <div className="lg:mt-20 mt-10">
                         <div className="grid lg:grid-cols-4 grid-cols-2 gap-4">
                              {products.map((product) => (
                                  <ProductCard
