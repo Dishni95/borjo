@@ -80,10 +80,12 @@ const Navbar = () => {
                 
                 {/* Desktop categories menu */}
                 <div className="bg-white pb-4 mt-6 max-w-screen-xl mx-auto hidden lg:block">
-                    <ul className="flex space-x-8 text-2xl font-normal mt-0">
+                    <ul className="flex space-x-6 text-2xl font-normal -ml-2">
                         {categories.map((category: Category) => (
                             <Link href={`/products?category=${category.id}`} key={category.id}>
-                                <li className="hover:font-bold transition-all ease-in-out">{category.category_name}</li>
+                                <div className="hover:bg-zinc-100 rounded-3xl transition-all">
+                                    <li className="pb-1 px-3">{category.category_name}</li>
+                                </div>
                             </Link>
                         ))}
                     </ul>

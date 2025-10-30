@@ -49,8 +49,8 @@ export default async function CategoryPage({searchParams}: {searchParams: {categ
     ]
 
     return (
-        <div className="max-w-screen-xl mx-2 lg:mx-auto">
-            <div className="mt-10">
+        <div className="max-w-screen-xl mx-2 mt-4 lg:mx-auto min-h-[calc(100vh-200px)]">
+            <div className="mt-2">
                 <Breadcrumbs crumbs={crumbs} />
             </div>
             <div className="mt-20">

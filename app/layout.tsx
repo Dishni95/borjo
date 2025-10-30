@@ -44,11 +44,11 @@ export default function RootLayout({
       >
         <CartProvider>
           <Navbar />
-          <main className="flex-grow">
+          <main className="flex-1">
             {children}
           </main>
+          <Footer />
         </CartProvider>
-        <Footer />
       </body>
     </html>
   );

@@ -46,7 +46,7 @@ export default async function ProductPage ({params}: {params: {id: string}}){
     })
 
     return (
-        <div className="max-w-screen-xl mx-2 lg:mx-auto">
+        <div className="max-w-screen-xl mx-2 mt-4 lg:mx-auto">
             <div className="mt-2">
                 <Breadcrumbs crumbs={crumbs} />
             </div>

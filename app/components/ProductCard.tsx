@@ -22,7 +22,7 @@ const ProductCard = ( { product }: ProductCardProps) => {
                     <img
                         src={display_image || ''}
                         alt={product.name}
-                        className="w-full object-cover"
+                        className="w-full object-cover aspect-3/4"
                     />
                 </div>
                 <div className="mt-4">
