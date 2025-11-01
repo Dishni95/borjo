@@ -1,11 +1,12 @@
 "use client"
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/routing";
 import { Product } from "@/types"
 import { useCart } from "@/context/CartContext";
 import { PiHeartStraightLight } from "react-icons/pi";
 import { MdOutlineCheck } from "react-icons/md";
+import { useTranslations } from 'next-intl';
 
 
 
@@ -14,6 +15,7 @@ export default function ProductDetails({ product }: { product: Product }) {
     const [showSuccess, setShowSuccess] = useState(false);
     const {addItem, items} = useCart();
     const router = useRouter();
+    const t = useTranslations('product');
 
     const isInCart = items.some(item => item.id === product.id);
 
@@ -92,14 +94,14 @@ export default function ProductDetails({ product }: { product: Product }) {
                        { showSuccess ? (
                             <>
                                 <MdOutlineCheck className="" />
-                                <span>Added</span>
+                                <span>{t('addToBag')}</span>
                             </>
                         ) : isInCart ? (
                             <>
-                                <span>Go to Bag</span>
+                                <span>{t('addToBag')}</span>
                             </>
                         ) : (
-                            'Add to Bag'
+                            t('addToBag')
                         )}
                     </button>
                     <button className="bg-zinc-100 rounded-full transition-all px-2 py-2 hover:bg-zinc-50">
@@ -109,7 +111,7 @@ export default function ProductDetails({ product }: { product: Product }) {
 
                 <div className="mt-10">
                     <p className="text-black">{product.composition}</p>
-                    <p className="text-black">Handmade in {product.madein}</p>
+                    <p className="text-black">{t('madeIn')} {product.madein}</p>
                 </div>
 
                 <div>

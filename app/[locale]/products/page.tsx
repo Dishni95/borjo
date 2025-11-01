@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
-import ProductGrid from "../components/ProductGrid";
-import Breadcrumbs from "../components/Breadcrumbs";
+import ProductGrid from "../../components/ProductGrid";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 const BUCKET_NAME = 'borjo_bucket'
 

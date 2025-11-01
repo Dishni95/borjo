@@ -1,6 +1,7 @@
 import ProductCard from "./ProductCard";
 import { createClient } from '@/utils/supabase/client'
 import { Product, Category } from "@/types";
+import { getTranslations } from 'next-intl/server';
 
 const BUCKET_NAME = 'borjo_bucket'
 
@@ -29,7 +30,7 @@ async function getProducts(): Promise<Product[]> {
 
 
 const HeroSection = async () => {
-
+    const t = await getTranslations('hero');
     const products = await getProducts();
     console.log(products)
     return (
@@ -38,7 +39,7 @@ const HeroSection = async () => {
                 <div className="mt-10">
                     <div className="mt-6 lg:w-1/2">
                         <p className="text-gray-700 leading-relaxed transition-opacity duration-300 ease-in-out">
-                            Discover our collection of handmade leather goods — crafted with care, precision and style.
+                            {t('description')}
                         </p>
                     </div>
                     <div className="lg:mt-20 mt-10">

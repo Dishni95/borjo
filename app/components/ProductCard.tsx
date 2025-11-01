@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import { Product } from "@/types";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 interface ProductCardProps {
     product: Product;

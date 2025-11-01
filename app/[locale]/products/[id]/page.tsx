@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server"
 import { Product } from "@/types"
-import ProductDetails from "@/app/components/ProductDetails"
-import Breadcrumbs from "@/app/components/Breadcrumbs"
+import ProductDetails from "../../../components/ProductDetails"
+import Breadcrumbs from "../../../components/Breadcrumbs"
 
 
 const BUCKET_NAME = 'borjo_bucket'

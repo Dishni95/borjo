@@ -2,14 +2,16 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useRouter, Link } from '@/i18n/routing';
 import { useCart } from '@/context/CartContext';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 function ReturnContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { items, clearCart } = useCart();
+  const t = useTranslations('checkout');
   const [status, setStatus] = useState<string | null>(null);
   const [customerEmail, setCustomerEmail] = useState('');
 
@@ -53,10 +55,10 @@ function ReturnContent() {
             />
           </svg>
           <h1 className="text-3xl font-bold mb-4 text-green-800">
-            Payment Successful!
+            {t('paymentSuccessful')}
           </h1>
           <p className="text-gray-700 mb-2">
-            Thank you for your purchase. Confirmation email has been sent to:
+            {t('thankYou')}
           </p>
           <p className="font-semibold text-gray-900 mb-6">{customerEmail}</p>
           <div className="flex gap-4 justify-center">
@@ -64,7 +66,7 @@ function ReturnContent() {
               href="/"
               className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800"
             >
-              Continue Shopping
+              {t('continueShopping')}
             </Link>
           </div>
         </div>
@@ -75,7 +77,7 @@ function ReturnContent() {
   return (
     <div className="max-w-screen-xl mx-auto mt-20 px-4 text-center">
       <div className="animate-pulse">
-        <p className="text-gray-600">Processing your payment...</p>
+        <p className="text-gray-600">{t('processingPayment')}</p>
       </div>
     </div>
   );
