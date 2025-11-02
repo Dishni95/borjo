@@ -2,55 +2,35 @@ import { createClient } from "@/utils/supabase/server"
 import { Product } from "@/types"
 import ProductDetails from "../../../components/ProductDetails"
 import Breadcrumbs from "../../../components/Breadcrumbs"
+import { getProductWithLocale, getCategoryNameWithLocale } from '@/utils/supabase/products';
 
-
-const BUCKET_NAME = 'borjo_bucket'
-
-
-export default async function ProductPage ({params}: {params: {id: string}}){
-    const {id} = params
+export default async function ProductPage ({params}: {params: Promise<{id: string, locale: string}>}){
+    const {id, locale} = await params
     const supabase = await createClient()
 
-    const {data, error} = await supabase
-        .from('products')
-        .select('*, product_images(id, file_path, position), product_item(price)')
-        .eq('id', id)
-        .single()
+    const product = await getProductWithLocale(supabase, id, locale)
 
-    const {data: categoryData, error: categoryError} = await supabase
-        .from('product_categories')
-        .select('category_name')
-        .eq('id', data.category_id)
-        .single()
-
-    if (!data) {
+    if (!product) {
         return <div>Product not found</div>
     }
 
-    const crumbs = categoryData ? [ 
-        { text: categoryData.category_name, link: `/products?category=${data.category_id}` },
-        { text: data.name, link: `/products/${id}` },
+    const categoryName = product.category_id 
+        ? await getCategoryNameWithLocale(supabase, product.category_id, locale)
+        : null
+
+    const crumbs = categoryName ? [ 
+        { text: categoryName, link: `/products?category=${product.category_id}` },
+        { text: product.name, link: `/products/${id}` },
     ] : [
-        { text: data.name, link: `/products/${id}` },
+        { text: product.name, link: `/products/${id}` },
     ]
-
-
-    const { data: { publicUrl: baseUrl } } = supabase.storage.from(BUCKET_NAME).getPublicUrl('')
-    
-    const productWithImages = ({
-        ...data,
-        product_images: data.product_images.map((image: { file_path: string }) => ({
-            ...image,
-            public_url: `${baseUrl}${image.file_path}`
-        }))
-    })
 
     return (
         <div className="max-w-screen-xl mx-2 mt-4 lg:mx-auto">
             <div className="mt-2">
                 <Breadcrumbs crumbs={crumbs} />
             </div>
-            <ProductDetails product={productWithImages} />
+            <ProductDetails product={product} />
         </div>
     )
 }

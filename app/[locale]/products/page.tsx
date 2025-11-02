@@ -1,49 +1,24 @@
 import { createClient } from "@/utils/supabase/server";
 import ProductGrid from "../../components/ProductGrid";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import { getProductsWithLocale, getCategoryNameWithLocale } from '@/utils/supabase/products';
+import { getLocale } from 'next-intl/server';
 
-const BUCKET_NAME = 'borjo_bucket'
-
-async function getCategoryProducts(category: string | null) {
-    const supabase = await createClient()
-    const { data, error } = await supabase
-        .from('products')
-        .select('*, product_images(file_path), product_item(price)')
-        .eq('category_id', category)
+export default async function CategoryPage({searchParams, params}: {searchParams: Promise<{category?: number}>, params: Promise<{locale: string}>}) {
+    const resolved = await searchParams;
+    const { locale } = await params;
+    const category = typeof resolved.category === 'string' ? Number(resolved.category) : resolved.category || null;
     
-    if (!data) return []
-    
-    // Get storage URL once
-    const { data: { publicUrl: baseUrl } } = supabase.storage.from(BUCKET_NAME).getPublicUrl('')
-    
-    // Transform data synchronously
-    return data.map(product => ({
-        ...product,
-        product_images: product.product_images.map((image: { file_path: string }) => ({
-            ...image,
-            public_url: `${baseUrl}${image.file_path}`
-        }))
-    }))
-}
+    const supabase = await createClient();
+    const products = await getCategoryProducts(supabase, locale, category);
 
+    // Fetch category name with locale
+    const categoryName = category 
+        ? await getCategoryNameWithLocale(supabase, category, locale)
+        : null;
 
-export default async function CategoryPage({searchParams}: {searchParams: {category: number}}) {
-    const resolved = await searchParams
-    const category = typeof resolved.category === 'string' ? resolved.category : null
-    const products = await getCategoryProducts(category)
-
-    // Fetch category name
-    const supabase = await createClient()
-    const { data: categoryData } = category 
-        ? await supabase
-            .from('product_categories')
-            .select('category_name')
-            .eq('id', category)
-            .single()
-        : { data: null }
-
-    const crumbs = categoryData ? [
-        { text: categoryData.category_name, link: `/products?category=${category}` },
+    const crumbs = categoryName ? [
+        { text: categoryName, link: `/products?category=${category}` },
     ] : [
         { text: "Products", link: '/products' },
     ]
@@ -58,4 +33,8 @@ export default async function CategoryPage({searchParams}: {searchParams: {categ
             </div>
         </div>
     )
+}
+
+async function getCategoryProducts(supabase: any, locale: string, categoryId: number | null) {
+    return await getProductsWithLocale(supabase, locale, categoryId);
 }
