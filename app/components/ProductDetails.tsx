@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "@/i18n/routing";
 import { Product } from "@/types"
 import { useCart } from "@/context/CartContext";
 import { PiHeartStraightLight } from "react-icons/pi";
 import { MdOutlineCheck } from "react-icons/md";
+import { useTranslations } from 'next-intl';
 
 
 
@@ -14,8 +15,26 @@ export default function ProductDetails({ product }: { product: Product }) {
     const [showSuccess, setShowSuccess] = useState(false);
     const {addItem, items} = useCart();
     const router = useRouter();
+    const t = useTranslations('product');
+    const sliderRef = useRef<HTMLDivElement>(null);
 
     const isInCart = items.some(item => item.id === product.id);
+
+    // Track scroll position for mobile slider indicator
+    useEffect(() => {
+        const slider = sliderRef.current;
+        if (!slider) return;
+
+        const handleScroll = () => {
+            const scrollLeft = slider.scrollLeft;
+            const itemWidth = slider.clientWidth;
+            const currentIndex = Math.round(scrollLeft / itemWidth);
+            setSelectedImageIndex(currentIndex);
+        };
+
+        slider.addEventListener('scroll', handleScroll);
+        return () => slider.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const handleAddToCart = async () => {
         if (isInCart) {
@@ -37,17 +56,38 @@ export default function ProductDetails({ product }: { product: Product }) {
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 max-w-screen-xl mx-auto lg:mt-10">
-            {/* Mobile: snap slider */}
-            <div className="flex overflow-x-auto snap-x snap-mandatory gap-2 lg:hidden">
-                {product.product_images.map((image, index) => (
-                <img
-                    key={index}
-                    src={image.public_url || ''}
-                    alt={`${product.name} ${index + 1}`}
-                    className="snap-center w-full flex-shrink-0 object-contain"
-                    style={{ maxHeight: '80vh' }}
-                />
-                ))}
+            {/* Mobile: snap slider with indicator */}
+            <div className="lg:hidden">
+                <div 
+                    ref={sliderRef}
+                    className="flex overflow-x-auto snap-x snap-mandatory gap-2 scrollbar-hide"
+                >
+                    {product.product_images.map((image, index) => (
+                    <img
+                        key={index}
+                        src={image.public_url || ''}
+                        alt={`${product.name} ${index + 1}`}
+                        className="snap-center w-full flex-shrink-0 object-contain"
+                        style={{ maxHeight: '80vh' }}
+                    />
+                    ))}
+                </div>
+                
+                {/* Slider indicator bar */}
+                {product.product_images.length > 1 && (
+                    <div className="flex justify-center gap-1.5 mt-4 px-4">
+                        {product.product_images.map((_, index) => (
+                            <div
+                                key={index}
+                                className={`h-0.5 transition-all duration-300 ${
+                                    selectedImageIndex === index
+                                        ? 'bg-black w-8'
+                                        : 'bg-gray-300 w-2'
+                                }`}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* Thumbnail column */}
@@ -92,14 +132,14 @@ export default function ProductDetails({ product }: { product: Product }) {
                        { showSuccess ? (
                             <>
                                 <MdOutlineCheck className="" />
-                                <span>Added</span>
+                                <span>{t('addToBag')}</span>
                             </>
                         ) : isInCart ? (
                             <>
-                                <span>Go to Bag</span>
+                                <span>{t('goToBag')}</span>
                             </>
                         ) : (
-                            'Add to Bag'
+                            t('addToBag')
                         )}
                     </button>
                     <button className="bg-zinc-100 rounded-full transition-all px-2 py-2 hover:bg-zinc-50">
@@ -109,7 +149,7 @@ export default function ProductDetails({ product }: { product: Product }) {
 
                 <div className="mt-10">
                     <p className="text-black">{product.composition}</p>
-                    <p className="text-black">Handmade in {product.madein}</p>
+                    <p className="text-black">{t('madeIn')} {product.madein}</p>
                 </div>
 
                 <div>

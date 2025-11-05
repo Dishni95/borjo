@@ -6,15 +6,18 @@ import { TbMenu } from "react-icons/tb";
 import { IoCloseOutline } from "react-icons/io5";
 import { PiHeartStraightLight } from "react-icons/pi";
 import { PiHandbagSimpleLight } from "react-icons/pi";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Category } from "@/types";
 import useCategories from "@/hooks/useMenu";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useTranslations } from 'next-intl';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const {items} = useCart()
     const { categories, loading } = useCategories();
     const cartItemCount = items.reduce((total, item) => total + item.quantity, 0)
+    const t = useTranslations('nav');
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -58,8 +61,11 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    {/* Right section - Cart, Favs & Profile */}
+                    {/* Right section - Language (desktop only), Cart, Favs */}
                     <div className="flex h-14 lg:mr-4 items-center mt-2">
+                        <div className="hidden lg:block">
+                            <LanguageSwitcher />
+                        </div>
                         <Link href="/favourite">
                             <div className="relative p-2 lg:mr-2 lg:p-2 mt-1 hover:bg-zinc-100 rounded-3xl transition-all">
                                 <PiHeartStraightLight size={25} />
@@ -100,19 +106,24 @@ const Navbar = () => {
                     ${isOpen ? 'translate-x-0' : 'translate-x-full'}
                 `}
             >
-                <ul className="flex flex-col p-8 pt-20 space-y-6">
-                    {categories.map((category: Category) => (
-                        <Link 
-                            href={`/products?category=${category.id}`} 
-                            key={category.id}
-                            onClick={() => setIsOpen(false)}
-                        >
-                            <li className="text-2xl py-2 hover:font-bold transition-all ease-in-out">
-                                {category.category_name}
-                            </li>
-                        </Link>
-                    ))}
-                </ul>
+                <div className="flex flex-col p-8 pt-20 h-full overflow-y-auto">
+                    <ul className="flex flex-col space-y-6">
+                        {categories.map((category: Category) => (
+                            <Link 
+                                href={`/products?category=${category.id}`} 
+                                key={category.id}
+                                onClick={() => setIsOpen(false)}
+                            >
+                                <li className="text-2xl py-2 hover:font-bold transition-all ease-in-out">
+                                    {category.category_name}
+                                </li>
+                            </Link>
+                        ))}
+                    </ul>
+                    
+                    {/* Language Switcher in Mobile Menu */}
+                    <LanguageSwitcher isMobile={true} onLanguageChange={() => setIsOpen(false)} />
+                </div>
             </div>
         </>
     )

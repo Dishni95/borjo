@@ -27,12 +27,19 @@ export async function POST(request: NextRequest) {
       quantity: item.quantity,
     }));
 
+    // Extract locale from the referer header (the page that called this API)
+    const referer = request.headers.get('referer') || '';
+    const refererUrl = new URL(referer || request.url);
+    const pathParts = refererUrl.pathname.split('/').filter(Boolean);
+    // First part of path should be the locale (en, de, fr, ru)
+    const locale = ['en', 'de', 'fr', 'ru'].includes(pathParts[0]) ? pathParts[0] : 'en';
+    
     // Create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded',
       line_items: lineItems,
       mode: 'payment',
-      return_url: `${request.headers.get('origin')}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${request.headers.get('origin')}/${locale}/checkout/return?session_id={CHECKOUT_SESSION_ID}`,
       automatic_tax: { enabled: true },
       shipping_address_collection: {
         allowed_countries: ['US', 'CA', 'GB', 'FR', 'DE', 'ES', 'IT', 'NL', 'BE'],

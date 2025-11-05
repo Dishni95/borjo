@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "favourite": "Favourite",
+    "cart": "Cart"
+  },
+  "hero": {
+    "description": "Discover our collection of handmade leather goods — crafted with care, precision and style."
+  },
+  "cart": {
+    "title": "Shopping Bag",
+    "empty": "Bag is empty",
+    "continueShopping": "Continue Shopping",
+    "quantity": "Qty",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total (VAT included)",
+    "checkout": "Go to Checkout",
+    "free": "Free"
+  },
+  "product": {
+    "details": "Details",
+    "composition": "Composition",
+    "madeIn": "Made in",
+    "addToBag": "Add to Bag",
+    "goToBag": "Go to Bag",
+    "selectSize": "Select Size",
+    "notFound": "Product not found"
+  },
+  "footer": {
+    "customerService": "Customer Service",
+    "contactUs": "Contact Us",
+    "shippingInfo": "Shipping Info",
+    "returns": "Returns",
+    "faq": "FAQ",
+    "legal": "Legal",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "contact": "Contact",
+    "email": "Email",
+    "phone": "Phone",
+    "hours": "Mon-Fri: 9:00-18:00 CET",
+    "address": "Address",
+    "description": "Handcrafted premium leather goods with timeless elegance and modern functionality.",
+    "allRightsReserved": "All rights reserved."
+  },
+  "checkout": {
+    "title": "Checkout",
+    "loading": "Loading checkout...",
+    "returnToCart": "Return to Cart",
+    "paymentSuccessful": "Payment Successful!",
+    "thankYou": "Thank you for your purchase. Confirmation email has been sent to:",
+    "continueShopping": "Continue Shopping",
+    "processingPayment": "Processing your payment..."
+  },
+  "language": {
+    "selectLanguage": "Language",
+    "en": "English",
+    "de": "German",
+    "fr": "French",
+    "ru": "Russian"
+  }
+}
+

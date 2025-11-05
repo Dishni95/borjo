@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "favourite": "Favoriten",
+    "cart": "Warenkorb"
+  },
+  "hero": {
+    "description": "Entdecken Sie unsere Kollektion handgefertigter Lederwaren — mit Sorgfalt, Präzision und Stil gefertigt."
+  },
+  "cart": {
+    "title": "Einkaufstasche",
+    "empty": "Tasche ist leer",
+    "continueShopping": "Weiter einkaufen",
+    "quantity": "Menge",
+    "remove": "Entfernen",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "total": "Gesamt (inkl. MwSt.)",
+    "checkout": "Zur Kasse gehen",
+    "free": "Kostenlos"
+  },
+  "product": {
+    "details": "Details",
+    "composition": "Zusammensetzung",
+    "madeIn": "Hergestellt in",
+    "addToBag": "In den Warenkorb",
+    "goToBag": "Zur Warenkorb",
+    "selectSize": "Größe auswählen",
+    "notFound": "Produkt nicht gefunden"
+  },
+  "footer": {
+    "customerService": "Kundenservice",
+    "contactUs": "Kontaktieren Sie uns",
+    "shippingInfo": "Versandinformationen",
+    "returns": "Rücksendungen",
+    "faq": "Häufige Fragen",
+    "legal": "Rechtliches",
+    "terms": "Allgemeine Geschäftsbedingungen",
+    "privacy": "Datenschutzerklärung",
+    "cookies": "Cookie-Richtlinie",
+    "contact": "Kontakt",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "hours": "Mo-Fr: 9:00-18:00 MEZ",
+    "address": "Adresse",
+    "description": "Handgefertigte Premium-Lederwaren mit zeitloser Eleganz und moderner Funktionalität.",
+    "allRightsReserved": "Alle Rechte vorbehalten."
+  },
+  "checkout": {
+    "title": "Kasse",
+    "loading": "Kasse wird geladen...",
+    "returnToCart": "Zurück zum Warenkorb",
+    "paymentSuccessful": "Zahlung erfolgreich!",
+    "thankYou": "Vielen Dank für Ihren Einkauf. Eine Bestätigungs-E-Mail wurde gesendet an:",
+    "continueShopping": "Weiter einkaufen",
+    "processingPayment": "Zahlung wird verarbeitet..."
+  },
+  "language": {
+    "selectLanguage": "Sprache",
+    "en": "Englisch",
+    "de": "Deutsch",
+    "fr": "Französisch",
+    "ru": "Russisch"
+  }
+}
+

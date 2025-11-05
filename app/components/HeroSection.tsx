@@ -1,44 +1,22 @@
 import ProductCard from "./ProductCard";
-import { createClient } from '@/utils/supabase/client'
+import { createClient } from '@/utils/supabase/server'
 import { Product, Category } from "@/types";
-
-const BUCKET_NAME = 'borjo_bucket'
-
-
-async function getProducts(): Promise<Product[]> {
-    const supabase = await createClient()
-    const { data, error } = await supabase
-        .from('products')
-        .select('*, product_images(file_path), product_item(price)')
-
-    if (!data) return []
-
-    // Get storage URL once
-    const { data: { publicUrl: baseUrl } } = supabase.storage.from(BUCKET_NAME).getPublicUrl('')
-    console.log(data)
-    
-    // Transform data synchronously
-    return data.map(product => ({
-        ...product,
-        product_images: product.product_images.map((image: { file_path: string }) => ({
-            ...image,
-            public_url: `${baseUrl}${image.file_path}`
-        }))
-    }))
-}
-
+import { getTranslations } from 'next-intl/server';
+import { getProductsWithLocale } from '@/utils/supabase/products';
+import { getLocale } from 'next-intl/server';
 
 const HeroSection = async () => {
-
-    const products = await getProducts();
-    console.log(products)
+    const t = await getTranslations('hero');
+    const locale = await getLocale();
+    const supabase = await createClient();
+    const products = await getProductsWithLocale(supabase, locale);
     return (
         <section>
             <div className="mb-20 mt-4 max-w-screen-xl mx-2 lg:mx-auto">
                 <div className="mt-10">
                     <div className="mt-6 lg:w-1/2">
                         <p className="text-gray-700 leading-relaxed transition-opacity duration-300 ease-in-out">
-                            Discover our collection of handmade leather goods — crafted with care, precision and style.
+                            {t('description')}
                         </p>
                     </div>
                     <div className="lg:mt-20 mt-10">

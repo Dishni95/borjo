@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "favourite": "Favoris",
+    "cart": "Panier"
+  },
+  "hero": {
+    "description": "Découvrez notre collection de maroquinerie artisanale — fabriquée avec soin, précision et style."
+  },
+  "cart": {
+    "title": "Sac d'achat",
+    "empty": "Le panier est vide",
+    "continueShopping": "Continuer vos achats",
+    "quantity": "Qté",
+    "remove": "Retirer",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "total": "Total (TVA incluse)",
+    "checkout": "Passer à la caisse",
+    "free": "Gratuit"
+  },
+  "product": {
+    "details": "Détails",
+    "composition": "Composition",
+    "madeIn": "Fabriqué en",
+    "addToBag": "Ajouter au panier",
+    "goToBag": "Aller au panier",
+    "selectSize": "Sélectionner la taille",
+    "notFound": "Produit introuvable"
+  },
+  "footer": {
+    "customerService": "Service Client",
+    "contactUs": "Nous contacter",
+    "shippingInfo": "Informations de livraison",
+    "returns": "Retours",
+    "faq": "FAQ",
+    "legal": "Mentions légales",
+    "terms": "Conditions générales",
+    "privacy": "Politique de confidentialité",
+    "cookies": "Politique des cookies",
+    "contact": "Contact",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "hours": "Lun-Ven: 9h00-18h00 CET",
+    "address": "Adresse",
+    "description": "Maroquinerie artisanale haut de gamme avec une élégance intemporelle et une fonctionnalité moderne.",
+    "allRightsReserved": "Tous droits réservés."
+  },
+  "checkout": {
+    "title": "Paiement",
+    "loading": "Chargement du paiement...",
+    "returnToCart": "Retour au panier",
+    "paymentSuccessful": "Paiement réussi !",
+    "thankYou": "Merci pour votre achat. Un e-mail de confirmation a été envoyé à :",
+    "continueShopping": "Continuer vos achats",
+    "processingPayment": "Traitement de votre paiement..."
+  },
+  "language": {
+    "selectLanguage": "Langue",
+    "en": "Anglais",
+    "de": "Allemand",
+    "fr": "Français",
+    "ru": "Russe"
+  }
+}
+
