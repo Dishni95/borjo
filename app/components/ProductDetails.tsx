@@ -136,7 +136,7 @@ export default function ProductDetails({ product }: { product: Product }) {
                             </>
                         ) : isInCart ? (
                             <>
-                                <span>{t('addToBag')}</span>
+                                <span>{t('goToBag')}</span>
                             </>
                         ) : (
                             t('addToBag')
