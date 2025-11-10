@@ -40,7 +40,7 @@ function ReturnContent() {
   if (status === 'paid') {
     return (
       <div className="max-w-screen-xl mx-auto mt-20 px-4 text-center">
-        <div className="bg-green-50 border border-green-200 rounded-lg p-8 max-w-2xl mx-auto">
+        <div className="rounded-lg p-8 max-w-2xl mx-auto">
           <svg
             className="w-16 h-16 text-green-500 mx-auto mb-4"
             fill="none"
@@ -54,7 +54,7 @@ function ReturnContent() {
               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <h1 className="text-3xl font-bold mb-4 text-green-800">
+          <h1 className="text-3xl font-bold mb-4 text-black">
             {t('paymentSuccessful')}
           </h1>
           <p className="text-gray-700 mb-2">

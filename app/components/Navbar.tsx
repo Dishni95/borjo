@@ -6,7 +6,7 @@ import { TbMenu } from "react-icons/tb";
 import { IoCloseOutline } from "react-icons/io5";
 import { PiHeartStraightLight } from "react-icons/pi";
 import { PiHandbagSimpleLight } from "react-icons/pi";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import { Category } from "@/types";
 import useCategories from "@/hooks/useMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -18,6 +18,10 @@ const Navbar = () => {
     const { categories, loading } = useCategories();
     const cartItemCount = items.reduce((total, item) => total + item.quantity, 0)
     const t = useTranslations('nav');
+    const pathname = usePathname();
+    
+    // Hide categories on checkout page (desktop only)
+    const isCheckoutPage = pathname?.includes('/checkout');
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -84,18 +88,20 @@ const Navbar = () => {
                     </div>
                 </div>
                 
-                {/* Desktop categories menu */}
-                <div className="bg-white pb-4 mt-6 max-w-screen-xl mx-auto hidden lg:block">
-                    <ul className="flex space-x-6 text-2xl font-normal -ml-2">
-                        {categories.map((category: Category) => (
-                            <Link href={`/products?category=${category.id}`} key={category.id}>
-                                <div className="hover:bg-zinc-100 rounded-3xl transition-all">
-                                    <li className="pb-1 px-3">{category.category_name}</li>
-                                </div>
-                            </Link>
-                        ))}
-                    </ul>
-                </div>
+                {/* Desktop categories menu - hidden on checkout page */}
+                {!isCheckoutPage && (
+                    <div className="bg-white pb-4 mt-6 max-w-screen-xl mx-auto hidden lg:block">
+                        <ul className="flex space-x-6 text-xl font-medium -ml-2">
+                            {categories.map((category: Category) => (
+                                <Link href={`/products?category=${category.id}`} key={category.id}>
+                                    <div className="hover:bg-zinc-100 rounded-3xl transition-all">
+                                        <li className="pb-1 px-3">{category.category_name}</li>
+                                    </div>
+                                </Link>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </nav>
             
             {/* Mobile categories menu - Full screen overlay */}
