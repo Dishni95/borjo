@@ -8,14 +8,16 @@ import { PiHeartStraightLight } from "react-icons/pi";
 import { PiHandbagSimpleLight } from "react-icons/pi";
 import { Link, usePathname } from "@/i18n/routing";
 import { Category } from "@/types";
-import useCategories from "@/hooks/useMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslations } from 'next-intl';
 
-const Navbar = () => {
+interface NavbarProps {
+    categories: Category[];
+}
+
+const Navbar = ({ categories }: NavbarProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const {items} = useCart()
-    const { categories, loading } = useCategories();
     const cartItemCount = items.reduce((total, item) => total + item.quantity, 0)
     const t = useTranslations('nav');
     const pathname = usePathname();
@@ -89,10 +91,10 @@ const Navbar = () => {
                 </div>
                 
                 {/* Desktop categories menu - hidden on checkout page */}
-                {!isCheckoutPage && (
+                {!isCheckoutPage && categories.length > 0 && (
                     <div className="bg-white pb-4 mt-6 max-w-screen-xl mx-auto hidden lg:block">
-                        <ul className="flex space-x-6 text-xl font-medium -ml-2">
-                            {categories.map((category: Category) => (
+                        <ul className="flex space-x-6 text-2xl font-normal -ml-2">
+                            {categories.map((category) => (
                                 <Link href={`/products?category=${category.id}`} key={category.id}>
                                     <div className="hover:bg-zinc-100 rounded-3xl transition-all">
                                         <li className="pb-1 px-3">{category.category_name}</li>
@@ -114,8 +116,8 @@ const Navbar = () => {
             >
                 <div className="flex flex-col p-8 pt-20 h-full overflow-y-auto">
                     <ul className="flex flex-col space-y-6">
-                        {categories.map((category: Category) => (
-                            <Link 
+                        {categories.map((category) => (
+                             <Link 
                                 href={`/products?category=${category.id}`} 
                                 key={category.id}
                                 onClick={() => setIsOpen(false)}

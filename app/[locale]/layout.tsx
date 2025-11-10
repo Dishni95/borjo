@@ -5,6 +5,8 @@ import { routing } from '@/i18n/routing';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { createClient } from '@/utils/supabase/server';
+import { getCategoriesWithLocale } from '@/utils/supabase/products';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -28,10 +30,14 @@ export default async function LocaleLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
+  // Fetch categories server-side with locale
+  const supabase = await createClient();
+  const categories = await getCategoriesWithLocale(supabase, locale);
+
   return (
     <NextIntlClientProvider messages={messages}>
       <CartProvider>
-        <Navbar />
+        <Navbar categories={categories} />
         <main className="flex-1">
           {children}
         </main>
