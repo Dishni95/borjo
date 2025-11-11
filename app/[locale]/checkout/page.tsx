@@ -27,7 +27,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-screen-xl mx-auto mt-10 px-4">
+    <div className="max-w-screen-xl mx-auto mt-10 px-4 min-h-[calc(100vh-300px)]">
       <EmbeddedCheckoutForm items={items} />
     </div>
   );

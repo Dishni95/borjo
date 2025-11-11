@@ -10,7 +10,7 @@ export default function CartPage() {
     
     if (items.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-300px)]">
+            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-400px)]">
                 <h1 className="text-2xl font-medium">{t('empty')}</h1>
                 <Link className="mt-4" href="/">
                     <button className="bg-zinc-100 text-black px-4 py-2 rounded-3xl hover:bg-zinc-50">
@@ -22,7 +22,7 @@ export default function CartPage() {
     }
     
     return (
-        <div className="lg:grid lg:grid-cols-2 gap-4 max-w-screen-xl mx-auto mt-10 lg:mt-20">
+        <div className="lg:grid lg:grid-cols-2 gap-4 max-w-screen-xl mx-auto mt-10 lg:mt-20 min-h-[calc(100vh-300px)]">
             {/* Cart items section*/}
             <div className="col-span-1">
                 <div className="flex flex-col gap-4 md:ml-20">
