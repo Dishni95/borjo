@@ -63,7 +63,7 @@ const Navbar = ({ categories }: NavbarProps) => {
                     {/* Center section - Logo */}
                     <div className="absolute left-1/2 transform -translate-x-1/2">
                         <Link href="/" className="flex z-40 px-3 py-2">
-                            <img src="/logo/Borjo.png" alt="Logo" className="h-12 w-48 mt-4 lg:w-40 object-contain" />
+                            <img src="/logo/Borjo.png" alt="Logo" className="h-12 w-24 mt-4 lg:w-32 object-contain" />
                         </Link>
                     </div>
 
