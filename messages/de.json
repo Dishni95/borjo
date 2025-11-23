@@ -4,7 +4,10 @@
     "cart": "Warenkorb"
   },
   "hero": {
-    "description": "Entdecken Sie unsere Kollektion handgefertigter Lederwaren — mit Sorgfalt, Präzision und Stil gefertigt."
+    "description": "Entdecken Sie unsere Kollektion handgefertigter Lederwaren — mit Sorgfalt, Präzision und Stil gefertigt.",
+    "browseTitle": "Gesamte Kollektion erkunden",
+    "browseDescription": "Entdecken Sie alle unsere handgefertigten Stücke",
+    "productsAvailable": "Produkte"
   },
   "cart": {
     "title": "Einkaufstasche",

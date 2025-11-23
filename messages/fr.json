@@ -4,7 +4,10 @@
     "cart": "Panier"
   },
   "hero": {
-    "description": "Découvrez notre collection de maroquinerie artisanale — fabriquée avec soin, précision et style."
+    "description": "Découvrez notre collection de maroquinerie artisanale — fabriquée avec soin, précision et style.",
+    "browseTitle": "Explorez toute la collection",
+    "browseDescription": "Découvrez toutes nos pièces artisanales",
+    "productsAvailable": "Produits"
   },
   "cart": {
     "title": "Sac d'achat",

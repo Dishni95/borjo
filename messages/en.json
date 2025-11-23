@@ -4,7 +4,10 @@
     "cart": "Cart"
   },
   "hero": {
-    "description": "Discover our collection of handmade leather goods — crafted with care, precision and style."
+    "description": "Discover our collection of handmade leather goods — crafted with care, precision and style.",
+    "browseTitle": "Explore Full Collection",
+    "browseDescription": "Discover all our handcrafted pieces",
+    "productsAvailable": "Products"
   },
   "cart": {
     "title": "Shopping Bag",
